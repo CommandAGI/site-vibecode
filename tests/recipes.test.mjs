@@ -1,10 +1,11 @@
 // The site's own tests: the demo's engine writes a program for every kind it offers, and the pages are whole — every
 // local link resolves, every page is in its own language, and each carries the A/文 button with all three languages.
-// Run: node --test tests/
+// Run: node --test tests/*.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { RECIPES, KINDS, pickRecipe, generate, titleOf } from '../app/recipes.mjs';
 
@@ -44,6 +45,24 @@ test('every kind generates a complete program whose script parses, and none of t
     }
 });
 
+test('every kind runs its first frames without an error, with the description it was written from', () => {
+    // The canvas is the one fake: a context whose every method answers. A program that names something it never
+    // defined (the bar chart once read DESCRIPTION, which only the fallback declared) throws here, as it would in the frame.
+    const descriptions = { bounce: 'a ball', clock: 'a clock', bars: 'a bar chart of 3, 5, 9', stars: 'stars', wave: 'a wave', fireworks: 'fireworks', text: 'a haiku about Tuesday' };
+    for (const kind of KINDS) {
+        const script = generate(descriptions[kind], 'en').match(/<script>([\s\S]*)<\/script>/)[1];
+        const context = new Proxy({}, { get: (t, p) => (p in t ? t[p] : () => ({ addColorStop() {} })), set: (t, p, v) => ((t[p] = v), true) });
+        let frames = 0;
+        const page = {
+            document: { getElementById: () => ({ getContext: () => context, clientWidth: 400, clientHeight: 300 }) },
+            window: {}, devicePixelRatio: 1, addEventListener() {}, Math, Date, String, Number,
+            requestAnimationFrame: (f) => { if (frames++ < 6) f(16 * frames); },
+        };
+        assert.doesNotThrow(() => vm.runInNewContext(script, page), `${kind}: runs`);
+        assert.ok(frames > 0, `${kind}: asks for a frame`);
+    }
+});
+
 test('the generated program is in the visitor\'s language', () => {
     assert.match(generate('a clock', 'es'), /Describiste:/);
     assert.match(generate('一个时钟', 'zh-Hans'), /你的描述是/);
@@ -79,12 +98,28 @@ test('every local link and asset of every page resolves to a file of this site',
     for (const { file } of PAGES) {
         const html = read(file);
         const dir = path.dirname(file);
-        const refs = [...html.matchAll(/(?:href|src)="([^"#:]+)"/g)].map(m => m[1])
+        const refs = [...html.matchAll(/(?:href|src|srcset)="([^"#:]+)(?:#[^"]*)?"/g)].map(m => m[1])
             .filter(href => !href.startsWith('mailto:') && !href.startsWith('data:'));
         for (const href of refs) {
             const target = href.endsWith('/') ? path.join(dir, href, 'index.html') : path.join(dir, href);
             assert.ok(existsSync(path.join(root, target)), `${file}: ${href} is a file of the site`);
         }
+    }
+});
+
+test('every page carries the same sections, and every in-page link and the gutter land on one of them', () => {
+    const ids = (html) => [...html.matchAll(/<section id="([^"]+)"/g)].map(m => m[1]);
+    const english = ids(read('index.html'));
+    assert.ok(english.length >= 8, 'the page has its sections');
+    for (const { file } of PAGES) {
+        const html = read(file);
+        assert.deepEqual(ids(html), english, `${file}: the same sections in the same order`);
+        for (const [, target] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(english.includes(target), `${file}: #${target} is a section`);
+        const gutter = html.match(/<nav class="gutter"[\s\S]*?<\/nav>/)[0];
+        assert.equal([...gutter.matchAll(/href="#/g)].length, english.length, `${file}: one gutter line per section`);
+        assert.match(html, /type="module" src="[^"]*app\/page\.js"/, `${file}: the page's motion script`);
+        // The film is generated: each figure says so, in the page's language.
+        assert.equal([...html.matchAll(/<figcaption>[^<]*fal[^<]*<\/figcaption>/g)].length, 3, `${file}: three generated figures, captioned`);
     }
 });
 

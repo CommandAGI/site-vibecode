@@ -72,7 +72,7 @@ function page(title, script) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
 <style>
-html, body { margin: 0; height: 100%; background: #0b0d10; overflow: hidden; }
+html, body { margin: 0; height: 100%; background: #191919; overflow: hidden; }
 canvas { display: block; width: 100vw; height: 100vh; }
 </style>
 </head>
@@ -111,13 +111,13 @@ function frame(dt) {
   if (py < r) { py = r; vy = Math.abs(vy); }
 }
 function draw() {
-  x.fillStyle = 'rgba(11, 13, 16, 0.22)'; x.fillRect(0, 0, W, H);
-  x.strokeStyle = 'rgba(190, 242, 100, 0.18)'; x.lineWidth = 1;
+  x.fillStyle = 'rgba(25, 25, 25, 0.22)'; x.fillRect(0, 0, W, H);
+  x.strokeStyle = 'rgba(230, 251, 101, 0.18)'; x.lineWidth = 1;
   x.beginPath(); x.moveTo(0, floor() + r); x.lineTo(W, floor() + r); x.stroke();
   const glow = x.createRadialGradient(px, py, 0, px, py, r * 2.4);
-  glow.addColorStop(0, 'rgba(190, 242, 100, 0.55)'); glow.addColorStop(1, 'rgba(190, 242, 100, 0)');
+  glow.addColorStop(0, 'rgba(230, 251, 101, 0.55)'); glow.addColorStop(1, 'rgba(230, 251, 101, 0)');
   x.fillStyle = glow; x.beginPath(); x.arc(px, py, r * 2.4, 0, Math.PI * 2); x.fill();
-  x.fillStyle = '#bef264'; x.beginPath(); x.arc(px, py, r, 0, Math.PI * 2); x.fill();
+  x.fillStyle = '#e6fb65'; x.beginPath(); x.arc(px, py, r, 0, Math.PI * 2); x.fill();
 }
 let last = 0;
 requestAnimationFrame(function step(t) {
@@ -134,13 +134,13 @@ function hand(angle, length, width, colour) {
 function draw(now) {
   const R = Math.min(W, H) * 0.36;
   x.clearRect(0, 0, W, H);
-  x.fillStyle = '#0b0d10'; x.fillRect(0, 0, W, H);
+  x.fillStyle = '#191919'; x.fillRect(0, 0, W, H);
   x.strokeStyle = 'rgba(226, 232, 240, 0.9)'; x.lineWidth = 2;
   x.beginPath(); x.arc(W / 2, H / 2, R, 0, Math.PI * 2); x.stroke();
   for (let i = 0; i < 12; i++) {
     const a = (i / 12) * Math.PI * 2;
     const r0 = R * 0.92, r1 = R * (i % 3 === 0 ? 0.8 : 0.87);
-    x.strokeStyle = i % 3 === 0 ? '#bef264' : 'rgba(226, 232, 240, 0.45)'; x.lineWidth = i % 3 === 0 ? 3 : 1.5;
+    x.strokeStyle = i % 3 === 0 ? '#e6fb65' : 'rgba(226, 232, 240, 0.45)'; x.lineWidth = i % 3 === 0 ? 3 : 1.5;
     x.beginPath(); x.moveTo(W / 2 + Math.cos(a) * r0, H / 2 + Math.sin(a) * r0);
     x.lineTo(W / 2 + Math.cos(a) * r1, H / 2 + Math.sin(a) * r1); x.stroke();
   }
@@ -149,8 +149,8 @@ function draw(now) {
   const h = (now.getHours() % 12) + m / 60;
   hand((h / 12) * Math.PI * 2 - Math.PI / 2, R * 0.5, 7, '#e2e8f0');
   hand((m / 60) * Math.PI * 2 - Math.PI / 2, R * 0.72, 4.5, '#e2e8f0');
-  hand((s / 60) * Math.PI * 2 - Math.PI / 2, R * 0.82, 2, '#bef264');
-  x.fillStyle = '#bef264'; x.beginPath(); x.arc(W / 2, H / 2, 5, 0, Math.PI * 2); x.fill();
+  hand((s / 60) * Math.PI * 2 - Math.PI / 2, R * 0.82, 2, '#e6fb65');
+  x.fillStyle = '#e6fb65'; x.beginPath(); x.arc(W / 2, H / 2, 5, 0, Math.PI * 2); x.fill();
   x.fillStyle = 'rgba(226, 232, 240, 0.65)'; x.font = '600 15px ui-monospace, monospace'; x.textAlign = 'center';
   x.fillText(now.toLocaleTimeString(), W / 2, H / 2 + R + 34);
 }
@@ -163,7 +163,7 @@ const values = found.length >= 2 ? found : [12, 19, 15, 27, 22, 34];
 const labels = found.length >= 2 ? values.map((_, i) => String(i + 1)) : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 let grow = 0;
 function draw() {
-  x.fillStyle = '#0b0d10'; x.fillRect(0, 0, W, H);
+  x.fillStyle = '#191919'; x.fillRect(0, 0, W, H);
   const pad = 44, top = 28, bottom = 40;
   const max = Math.max(...values, 1);
   const bw = (W - pad * 2) / values.length;
@@ -173,7 +173,7 @@ function draw() {
     const h = ((H - top - bottom) * v) / max * grow;
     const bx = pad + i * bw + bw * 0.18, bwid = bw * 0.64;
     const grad = x.createLinearGradient(0, H - bottom - h, 0, H - bottom);
-    grad.addColorStop(0, '#bef264'); grad.addColorStop(1, 'rgba(190, 242, 100, 0.25)');
+    grad.addColorStop(0, '#e6fb65'); grad.addColorStop(1, 'rgba(230, 251, 101, 0.25)');
     x.fillStyle = grad; x.fillRect(bx, H - bottom - h, bwid, h);
     x.fillStyle = 'rgba(226, 232, 240, 0.8)'; x.font = '600 13px ui-monospace, monospace'; x.textAlign = 'center';
     x.fillText(String(v), bx + bwid / 2, H - bottom - h - 8);
@@ -188,7 +188,7 @@ requestAnimationFrame(step);`,
 const N = 220, stars = [];
 for (let i = 0; i < N; i++) stars.push({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, z: Math.random() });
 function draw() {
-  x.fillStyle = 'rgba(11, 13, 16, 0.35)'; x.fillRect(0, 0, W, H);
+  x.fillStyle = 'rgba(25, 25, 25, 0.35)'; x.fillRect(0, 0, W, H);
   const cx = W / 2, cy = H / 2, f = Math.min(W, H) * 0.5;
   for (const s of stars) {
     const px = cx + (s.x / s.z) * f, py = cy + (s.y / s.z) * f;
@@ -207,12 +207,12 @@ requestAnimationFrame(draw);`,
 
     wave: `// Two sine waves, one trailing the other, drawn across the window.
 const waves = [
-  { amp: 0.16, len: 0.9, speed: 1.4, colour: '#bef264', width: 3 },
-  { amp: 0.1, len: 1.7, speed: -0.9, colour: 'rgba(148, 197, 255, 0.85)', width: 2 },
+  { amp: 0.16, len: 0.9, speed: 1.4, colour: '#e6fb65', width: 3 },
+  { amp: 0.1, len: 1.7, speed: -0.9, colour: 'rgba(125, 147, 255, 0.85)', width: 2 },
 ];
 let t = 0;
 function draw() {
-  x.fillStyle = '#0b0d10'; x.fillRect(0, 0, W, H);
+  x.fillStyle = '#191919'; x.fillRect(0, 0, W, H);
   for (const w of waves) {
     x.strokeStyle = w.colour; x.lineWidth = w.width; x.lineJoin = 'round';
     x.beginPath();
@@ -238,7 +238,7 @@ function burst(at) {
   }
 }
 function step(dt) {
-  x.fillStyle = 'rgba(11, 13, 16, 0.18)'; x.fillRect(0, 0, W, H);
+  x.fillStyle = 'rgba(25, 25, 25, 0.18)'; x.fillRect(0, 0, W, H);
   if (!shell && sparks.length < 40) { timer -= dt; if (timer <= 0) { launch(); timer = 0.6 + Math.random(); } }
   if (shell) {
     shell.y += shell.vy * dt; shell.vy += 260 * dt;
@@ -267,12 +267,12 @@ const items = (words.length ? words : ['vibecode']).map((w, i) => ({
   size: 18 + (i % 4) * 9,
 }));
 function draw() {
-  x.fillStyle = 'rgba(11, 13, 16, 0.14)'; x.fillRect(0, 0, W, H);
+  x.fillStyle = 'rgba(25, 25, 25, 0.14)'; x.fillRect(0, 0, W, H);
   x.textAlign = 'center'; x.textBaseline = 'middle';
   for (const it of items) {
     it.x = (it.x + it.vx * 0.016 + W) % W; it.y = (it.y + it.vy * 0.016 + H) % H;
-    x.fillStyle = 'rgba(190, 242, 100, 0.75)';
-    x.font = '700 ' + it.size + 'px ui-sans-serif, system-ui, sans-serif';
+    x.fillStyle = 'rgba(230, 251, 101, 0.75)';
+    x.font = 'italic 500 ' + it.size + 'px Georgia, serif';
     x.fillText(it.w, it.x, it.y);
   }
   requestAnimationFrame(draw);
@@ -295,10 +295,10 @@ export function generate(description, lang = 'en') {
     const text = String(description ?? '').trim().slice(0, 400);
     const id = pickRecipe(text);
     const title = titleOf(id, lang);
-    // The description lands in a comment inside the program's script: no `<` or `>` survives, so it cannot close the
+    // The description lands in a comment inside the program's script (and, for the kinds that read it, in a string): no `<` or `>` survives, so it cannot close the
     // script or open a tag, and no `*/` closes a block comment.
     const comment = (COMMENTS[lang] ?? COMMENTS.en)(text.replace(/[<>]/g, ' ').replace(/\*\//g, '* /').replace(/[\r\n]+/g, ' '));
-    const head = `${comment}${id === 'text' ? `const DESCRIPTION = ${JSON.stringify(text).replace(/</g, '\\u003c')};\n` : ''}`;
+    const head = `${comment}${id === 'text' || id === 'bars' ? `const DESCRIPTION = ${JSON.stringify(text).replace(/</g, '\\u003c')};\n` : ''}`;
     return page(title, head + SCRIPTS[id]);
 }
 

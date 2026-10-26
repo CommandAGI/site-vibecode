@@ -3,156 +3,245 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCode — 用描述写代码</title>
+<title>VibeCode — 用一句话说出来，作为代码运行</title>
 <meta name="description" content="VibeCode 用一句话写出能运行的程序。每一行你都能读、能改，并在浏览器里运行。CommandAGI 旗下公司。">
-<meta name="theme-color" content="#0b0d10">
+<meta name="theme-color" content="#fdfdfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121315" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="VibeCode — 用一句话说出来，作为代码运行">
+<meta property="og:description" content="一句话变成一个你能读、能改、能在浏览器里运行的程序。">
+<meta property="og:image" content="https://vibecode.commandagi.app/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../touch-icon.png">
+<link rel="preload" href="../fonts/garamond-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/commit-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<header class="nav">
-  <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
-  <nav aria-label="页面">
-    <a href="#demo">演示</a>
-    <a href="#how">如何工作</a>
-    <a href="#pricing">价格</a>
-    <a href="#faq">问题</a>
-  </nav>
-  <a class="btn btn--go" href="#demo">试一试</a>
+<a class="skip" href="#demo">跳到演示</a>
+
+<header class="head">
+  <a class="wordmark" href="../" aria-label="VibeCode，首页"><svg viewBox="-2 -46 232 62" aria-hidden="true"><use href="../wordmark.svg#w"/></svg></a>
+  <a class="swipe head__go" href="#demo">试一试</a>
 </header>
 
+<nav class="gutter" aria-label="章节">
+  <ol>
+    <li><a href="#top" data-label="一句话">1</a></li>
+    <li><a href="#compile" data-label="编译">2</a></li>
+    <li><a href="#read" data-label="阅读">3</a></li>
+    <li><a href="#demo" data-label="演示">4</a></li>
+    <li><a href="#how" data-label="如何工作">5</a></li>
+    <li><a href="#sandbox" data-label="沙箱">6</a></li>
+    <li><a href="#pricing" data-label="价格">7</a></li>
+    <li><a href="#faq" data-label="注释">8</a></li>
+  </ol>
+</nav>
+<button class="statusbar" type="button" popovertarget="toc" aria-label="章节"><span>行&nbsp;<b data-ln>1</b></span><span data-sec>一句话</span><span class="statusbar__all" aria-hidden="true">≡ 章节</span></button>
+<div id="toc" class="toc" popover>
+  <p class="toc__title">跳到行</p>
+  <ol>
+    <li><a href="#top">一句话</a></li>
+    <li><a href="#compile">编译</a></li>
+    <li><a href="#read">阅读</a></li>
+    <li><a href="#demo">演示</a></li>
+    <li><a href="#how">如何工作</a></li>
+    <li><a href="#sandbox">沙箱</a></li>
+    <li><a href="#pricing">价格</a></li>
+    <li><a href="#faq">注释</a></li>
+  </ol>
+</div>
+
 <main>
-<section class="hero">
-  <p class="eyebrow">用描述写代码</p>
-  <h1>描述它。读代码。运行它。</h1>
-  <p class="lede">VibeCode 用一句话写出能运行的程序。每一行你都能读、能改，并在浏览器里运行。不用安装任何东西。</p>
-  <div class="cta">
-    <a class="btn btn--go btn--big" href="#demo">试用演示</a>
-    <a class="btn btn--big" href="#how">如何工作</a>
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <figure class="hero__plate">
+    <picture>
+      <source srcset="../media/sorts.avif" type="image/avif">
+      <img src="../media/sorts.jpg" alt="" width="1600" height="890" fetchpriority="high">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/sorts.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/sorts.mp4" type="video/mp4">
+    </video>
+    <figcaption>图 1 — 排字手托里的铅字。生成图像（fal），不是照片。</figcaption>
+  </figure>
+  <h1 id="hero-title" class="hero__title">
+    <span class="say">用一句话说出来。</span>
+    <span class="run"><span>run(it);</span></span>
+  </h1>
+  <div class="hero__body">
+    <p class="lede">VibeCode 用一句话写出能运行的程序。每一行你都能读、能改、能运行——就在这里，在浏览器里。</p>
+    <p class="actions"><a class="swipe" href="#demo">写一句话</a> <a class="under" href="#compile">看它编译 ↓</a></p>
+    <p class="fine">第一版：引擎就在这个页面上运行。没有模型，没有账号，没有网络。</p>
   </div>
-  <p class="fine">第一版：引擎就在这个页面上运行。没有模型，没有账号，没有网络。</p>
 </section>
 
-<section id="demo" class="demo">
-  <div class="demo__head">
-    <h2>描述一个程序</h2>
-    <p>写一句话。VibeCode 写出程序，把代码给你看，并在下面运行它。</p>
+<section id="compile" class="compile" aria-labelledby="compile-title">
+  <div class="compile__stage">
+    <header class="compile__head">
+      <h2 id="compile-title"><span class="num">§2</span> 一句话，编译完成</h2>
+      <p class="tag">预设的演示：一个固定的程序，一步一步。</p>
+    </header>
+    <p class="sentence">
+      <button type="button" data-k="1">画一个球，</button>
+      <button type="button" data-k="2">让它下落，</button>
+      <button type="button" data-k="3">碰到地面就弹起，</button>
+      <button type="button" data-k="4">并留下一道轨迹。</button>
+    </p>
+    <div class="galley" aria-label="这句话变成的代码">
+      <div class="ln" data-k="1"><span class="ln__say">画一个球</span><code class="ln__code">const ball = { x: 60, y: 40, r: 14, vy: 0 };</code></div>
+      <div class="ln" data-k="2"><span class="ln__say">让它下落</span><code class="ln__code">ball.vy += 1400 * dt;
+ball.y  += ball.vy * dt;</code></div>
+      <div class="ln" data-k="3"><span class="ln__say">碰到地面就弹起</span><code class="ln__code">if (ball.y &gt; floor) {
+  ball.y = floor; ball.vy *= -0.82;
+}</code></div>
+      <div class="ln" data-k="4"><span class="ln__say">留下一道轨迹</span><code class="ln__code">trail.push({ ...ball });
+if (trail.length &gt; 24) trail.shift();</code></div>
+    </div>
+    <figure class="runner">
+      <canvas id="runner" width="640" height="240" data-empty="// 还什么都没写" role="img" aria-label="写到哪里就运行到哪里的程序：一个下落、弹起并留下轨迹的球"></canvas>
+      <figcaption><span data-step-label>第 0 步，共 4 步</span>——画布运行目前写好的几行。</figcaption>
+    </figure>
+    <p class="sr-only" aria-live="polite" data-step-live></p>
   </div>
-  <div class="demo__grid">
-    <div class="pane">
-      <label for="describe">你的描述</label>
-      <textarea id="describe" rows="4" spellcheck="true" placeholder="一个弹跳的球"></textarea>
-      <div class="chips" role="group" aria-label="示例">
+</section>
+
+<section id="read" class="plate plate--read" aria-labelledby="read-title">
+  <figure class="plate__media">
+    <picture>
+      <source srcset="../media/proof.avif" type="image/avif">
+      <img src="../media/proof.jpg" alt="" width="1600" height="890" loading="lazy">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/proof.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/proof.mp4" type="video/mp4">
+    </video>
+    <figcaption>图 2 — 一张校样，标出了一行。生成图像（fal），不是照片。</figcaption>
+  </figure>
+  <div class="plate__label">
+    <h2 id="read-title">每一行都读。</h2>
+    <p><code>// 代码就在它做的事旁边。没有什么藏在服务里。</code></p>
+  </div>
+</section>
+
+<section id="demo" class="desk" aria-labelledby="demo-title">
+  <header class="desk__head">
+    <h2 id="demo-title"><span class="num">§4</span> 写一句话。</h2>
+    <p>VibeCode 写出程序，给你看代码，然后运行它。</p>
+  </header>
+  <div class="desk__grid">
+    <div class="manuscript">
+      <label for="describe">你的一句话</label>
+      <textarea id="describe" rows="3" spellcheck="true" placeholder="一个弹跳的球"></textarea>
+      <p class="examples" role="group" aria-label="示例"><span>试试</span>
         <button type="button" data-example="一个弹跳的球">一个弹跳的球</button>
         <button type="button" data-example="一个时钟">一个时钟</button>
         <button type="button" data-example="一个柱状图，数据是 12, 19, 15, 27, 22, 34">一个柱状图</button>
         <button type="button" data-example="一片星空">一片星空</button>
         <button type="button" data-example="一道波">一道波</button>
         <button type="button" data-example="烟花">烟花</button>
-      </div>
-      <div class="row">
-        <button id="generate" class="btn btn--go" type="button">生成代码</button>
-        <span class="kbd"><kbd>Ctrl</kbd><kbd>↵</kbd></span>
-      </div>
-      <p class="note">这一版根据你写的词选择一份配方。引擎很小、在本地、可读：<code>app/recipes.mjs</code>。真正的产品会写出新的程序，而不是配方。</p>
+      </p>
+      <p class="actions"><button id="generate" class="swipe" type="button">写出代码</button> <span class="kbd"><kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>Enter</kbd></span></p>
+      <p class="note"><b>是配方，不是模型。</b>这一版根据你写的词从六份配方里选一份，或者把你的话画出来。引擎很小、在本地、可读：<code>app/recipes.mjs</code>。真正的产品会写出新的程序。</p>
     </div>
-    <div class="pane pane--code">
+    <div class="proofsheet">
       <div class="codebar">
         <span>index.html</span>
-        <div class="codebar__actions">
+        <span class="codebar__actions">
           <button id="copy" type="button">复制</button>
           <button id="run" type="button">运行</button>
           <button id="reset" type="button">重置</button>
-        </div>
+        </span>
       </div>
       <textarea id="code" spellcheck="false" aria-label="程序的代码"></textarea>
-      <iframe id="preview" title="程序的运行结果" sandbox="allow-scripts"></iframe>
+      <iframe id="preview" title="程序的输出" sandbox="allow-scripts"></iframe>
       <p id="status" class="status" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
 
-<section class="features">
-  <h2>它做什么</h2>
-  <div class="cards">
-    <article class="card">
-      <h3>进来一句话</h3>
-      <p>一个描述、一个数字、一个小想法。VibeCode 把它变成能运行的程序。</p>
-    </article>
-    <article class="card">
-      <h3>每一行都读得懂</h3>
-      <p>代码就在结果旁边。读它、改它、再运行一次。没有什么藏在服务里。</p>
-    </article>
-    <article class="card">
-      <h3>运行得安全</h3>
-      <p>程序在有沙箱、没有网络的框架里运行。它读不到这个页面，也发不出你的代码。</p>
-    </article>
-    <article class="card">
-      <h3>归你所有</h3>
-      <p>把代码复制走、保存下来。它是一个带自己脚本的普通 HTML 文件，在任何地方都能运行。</p>
-    </article>
+<section id="how" class="proofs" aria-labelledby="how-title">
+  <h2 id="how-title"><span class="num">§5</span> 三张校样，一个循环。</h2>
+  <ol>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">“ ”</span><h3><span class="s">描述。</span><span class="m" aria-hidden="true">describe()</span></h3><p>用你自己的话：英文、西班牙文或中文。</p></li>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">{ }</span><h3><span class="s">阅读。</span><span class="m" aria-hidden="true">read()</span></h3><p>程序以代码的形式出现在输出旁边，很短，带注释。</p></li>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">&gt;_</span><h3><span class="s">运行并修改。</span><span class="m" aria-hidden="true">run()</span></h3><p>改一行，再运行一次，留下有用的部分。把它复制出来：它就是一个普通的 HTML 文件。</p></li>
+  </ol>
+</section>
+
+<section id="sandbox" class="plate plate--ink" aria-labelledby="sandbox-title">
+  <figure class="plate__media">
+    <picture>
+      <source srcset="../media/ink.avif" type="image/avif">
+      <img src="../media/ink.jpg" alt="" width="1600" height="890" loading="lazy">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/ink.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/ink.mp4" type="video/mp4">
+    </video>
+    <figcaption>图 3 — 渗进棉纸的墨水。生成图像（fal），不是照片。</figcaption>
+  </figure>
+  <div class="plate__label">
+    <h2 id="sandbox-title">什么都不会离开这个页面。</h2>
+    <p>程序在 <code>&lt;iframe sandbox="allow-scripts"&gt;</code> 里运行：没有网络，碰不到这个页面。页面加载之后不发送任何东西。</p>
   </div>
 </section>
 
-<section id="how" class="how">
-  <h2>如何工作</h2>
-  <ol class="steps">
-    <li><strong>描述。</strong> 用你自己的话说明你想要什么，英文、西班牙文或中文都行。</li>
-    <li><strong>阅读。</strong> 程序以代码的形式出现在右边，带注释，很短。</li>
-    <li><strong>运行并修改。</strong> 在框架里运行它。改一行，再运行一次。留下有用的部分。</li>
-  </ol>
-  <p class="fine">演示会写六种程序，再加一种用你自己的话画出来的。它读取你描述里的词来选择。这就是产品交付的循环：一段描述变成你能信任的代码，因为你可以把它全部读完。</p>
-</section>
-
-<section id="pricing" class="pricing">
-  <h2>价格</h2>
-  <div class="cards cards--three">
-    <article class="card card--price">
+<section id="pricing" class="specimen" aria-labelledby="pricing-title">
+  <header>
+    <h2 id="pricing-title"><span class="num">§7</span> 三种字重。</h2>
+    <p>同一个工具，人越多，字越重。</p>
+  </header>
+  <div class="weights">
+    <article class="weight weight--400">
+      <p class="weight__axis"><code>wght 400</code></p>
       <h3>免费</h3>
-      <p class="price">$0</p>
+      <p class="weight__price">$0</p>
       <ul><li>这个页面上的演示</li><li>所有种类的程序</li><li>可以复制和保存的代码</li></ul>
-      <a class="btn" href="#demo">打开演示</a>
+      <a class="under" href="#demo">打开演示</a>
     </article>
-    <article class="card card--price">
+    <article class="weight weight--600">
+      <p class="weight__axis"><code>wght 600</code></p>
       <h3>团队</h3>
-      <p class="price">发布时定价</p>
+      <p class="weight__price">发布时定价</p>
       <ul><li>根据你自己的描述写程序</li><li>共享工作区</li><li>你的仓库，你的代码</li></ul>
-      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Team">申请提前使用</a>
+      <a class="under" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Team">申请提前使用</a>
     </article>
-    <article class="card card--price">
+    <article class="weight weight--800">
+      <p class="weight__axis"><code>wght 800</code></p>
       <h3>企业</h3>
-      <p class="price">发布时定价</p>
+      <p class="weight__price">发布时定价</p>
       <ul><li>你自己的模型和云</li><li>代码发布前先审阅</li><li>一份支持协议</li></ul>
-      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Enterprise">联系我们</a>
+      <a class="under" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Enterprise">联系我们</a>
     </article>
   </div>
   <p class="fine">现在还没有价格。每个方案由所有者定价并发布。这个页面不收任何付款。</p>
 </section>
 
-<section id="faq" class="faq">
-  <h2>问题</h2>
-  <details><summary>这个页面会调用模型吗？</summary><p>不会。第一版在你的浏览器里运行一个小引擎，根据你写的词从六份配方里选一份。产品的下一版会通过我们的 API 调用模型，绝不在浏览器里放密钥。</p></details>
-  <details><summary>我的代码会离开这个页面吗？</summary><p>不会。页面加载之后不发送任何东西。程序在有沙箱、没有网络的框架里运行。</p></details>
-  <details><summary>我能留下它写的东西吗？</summary><p>可以。复制代码，保存成 HTML 文件。它在任何浏览器里都能离线运行。</p></details>
-  <details><summary>谁做 VibeCode？</summary><p>VibeCode 是 CommandAGI 旗下的一家公司。写信到 <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>。</p></details>
+<section id="faq" class="notes" aria-labelledby="faq-title">
+  <h2 id="faq-title"><span class="num">§8</span> 注释</h2>
+  <details><summary><sup>1</sup> 这个页面会调用模型吗？</summary><p>不会。第一版在你的浏览器里运行一个小引擎，根据你写的词从六份配方里选一份。产品的下一版会通过我们的 API 调用模型，绝不在浏览器里放密钥。</p></details>
+  <details><summary><sup>2</sup> 我的代码会离开这个页面吗？</summary><p>不会。页面加载之后不发送任何东西。程序在有沙箱、没有网络的框架里运行。</p></details>
+  <details><summary><sup>3</sup> 我能留下它写的东西吗？</summary><p>可以。复制代码，保存成 HTML 文件。它在任何浏览器里都能离线运行。</p></details>
+  <details><summary><sup>4</sup> 谁做 VibeCode？</summary><p>VibeCode 是 CommandAGI 旗下的一家公司。写信到 <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>.</p></details>
 </section>
 </main>
 
-<footer class="footer">
-  <div class="footer__top">
-    <div>
-      <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
-      <p class="pitch">用描述写代码。CommandAGI 旗下公司。</p>
-      <p><a class="go" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
-    </div>
-    <nav class="footer__links" aria-label="本站">
-      <a href="#demo">演示</a>
-      <a href="#how">如何工作</a>
-      <a href="#pricing">价格</a>
-      <a href="#faq">问题</a>
-    </nav>
+<footer class="colophon">
+  <a class="wordmark wordmark--big" href="../" aria-label="VibeCode，首页"><svg viewBox="-2 -46 232 62" aria-hidden="true"><use href="../wordmark.svg#w"/></svg></a>
+  <div class="colophon__text">
+    <p><i>版权页。</i>正文用 EB Garamond 和 Commit Mono 排成。影像由 fal 生成：铅字、纸和墨水的习作，不是任何人工作的照片。</p>
+    <p>用描述写代码。CommandAGI 旗下公司。<a class="under" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
   </div>
-  <div class="footer__base">
+  <nav class="colophon__links" aria-label="本站">
+    <a href="#demo">演示</a>
+    <a href="#how">如何工作</a>
+    <a href="#pricing">价格</a>
+    <a href="#faq">注释</a>
+  </nav>
+  <div class="colophon__base">
     <span>© 2026 VibeCode，CommandAGI 旗下公司。</span>
     <div class="lang">
       <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="语言" title="语言"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
@@ -171,6 +260,7 @@
   </div>
 </footer>
 <script src="../app/lang.js"></script>
+<script type="module" src="../app/page.js"></script>
 <script type="module" src="../app/demo.js"></script>
 </body>
 </html>

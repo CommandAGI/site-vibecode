@@ -3,67 +3,157 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VibeCode — código a partir de una descripción</title>
+<title>VibeCode — dilo en una frase, ejecútalo como código</title>
 <meta name="description" content="VibeCode escribe un programa que funciona a partir de una frase. Lees cada línea, la cambias y la ejecutas en el navegador. Una empresa de CommandAGI.">
-<meta name="theme-color" content="#0b0d10">
+<meta name="theme-color" content="#fdfdfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121315" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="VibeCode — dilo en una frase, ejecútalo como código">
+<meta property="og:description" content="Una frase se convierte en un programa que puedes leer, cambiar y ejecutar en el navegador.">
+<meta property="og:image" content="https://vibecode.commandagi.app/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../touch-icon.png">
+<link rel="preload" href="../fonts/garamond-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/commit-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<header class="nav">
-  <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
-  <nav aria-label="Secciones">
-    <a href="#demo">Demo</a>
-    <a href="#how">Cómo funciona</a>
-    <a href="#pricing">Precios</a>
-    <a href="#faq">Preguntas</a>
-  </nav>
-  <a class="btn btn--go" href="#demo">Probar</a>
+<a class="skip" href="#demo">Ir a la demo</a>
+
+<header class="head">
+  <a class="wordmark" href="../" aria-label="VibeCode, inicio"><svg viewBox="-2 -46 232 62" aria-hidden="true"><use href="../wordmark.svg#w"/></svg></a>
+  <a class="swipe head__go" href="#demo">Pruébalo</a>
 </header>
 
+<nav class="gutter" aria-label="Secciones">
+  <ol>
+    <li><a href="#top" data-label="La frase">1</a></li>
+    <li><a href="#compile" data-label="Se compila">2</a></li>
+    <li><a href="#read" data-label="Leer">3</a></li>
+    <li><a href="#demo" data-label="La demo">4</a></li>
+    <li><a href="#how" data-label="Cómo funciona">5</a></li>
+    <li><a href="#sandbox" data-label="Aislado">6</a></li>
+    <li><a href="#pricing" data-label="Precios">7</a></li>
+    <li><a href="#faq" data-label="Notas">8</a></li>
+  </ol>
+</nav>
+<button class="statusbar" type="button" popovertarget="toc" aria-label="Secciones"><span>Lín&nbsp;<b data-ln>1</b></span><span data-sec>La frase</span><span class="statusbar__all" aria-hidden="true">≡ secciones</span></button>
+<div id="toc" class="toc" popover>
+  <p class="toc__title">Ir a la línea</p>
+  <ol>
+    <li><a href="#top">La frase</a></li>
+    <li><a href="#compile">Se compila</a></li>
+    <li><a href="#read">Leer</a></li>
+    <li><a href="#demo">La demo</a></li>
+    <li><a href="#how">Cómo funciona</a></li>
+    <li><a href="#sandbox">Aislado</a></li>
+    <li><a href="#pricing">Precios</a></li>
+    <li><a href="#faq">Notas</a></li>
+  </ol>
+</div>
+
 <main>
-<section class="hero">
-  <p class="eyebrow">Código a partir de una descripción</p>
-  <h1>Descríbelo. Lee el código. Ejecútalo.</h1>
-  <p class="lede">VibeCode escribe un programa que funciona a partir de una frase. Ves cada línea, la cambias y la ejecutas en el navegador. No hay nada que instalar.</p>
-  <div class="cta">
-    <a class="btn btn--go btn--big" href="#demo">Probar la demo</a>
-    <a class="btn btn--big" href="#how">Cómo funciona</a>
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <figure class="hero__plate">
+    <picture>
+      <source srcset="../media/sorts.avif" type="image/avif">
+      <img src="../media/sorts.jpg" alt="" width="1600" height="890" fetchpriority="high">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/sorts.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/sorts.mp4" type="video/mp4">
+    </video>
+    <figcaption>fig. 1 — tipos de plomo en un componedor. Generado (fal), no es una fotografía.</figcaption>
+  </figure>
+  <h1 id="hero-title" class="hero__title">
+    <span class="say">Dilo en una frase.</span>
+    <span class="run"><span>run(it);</span></span>
+  </h1>
+  <div class="hero__body">
+    <p class="lede">VibeCode escribe un programa que funciona a partir de una frase. Lees cada línea, la cambias y la ejecutas — aquí, en el navegador.</p>
+    <p class="actions"><a class="swipe" href="#demo">Escribe una frase</a> <a class="under" href="#compile">Mira cómo se compila ↓</a></p>
+    <p class="fine">Primera versión: el motor se ejecuta en esta página. Sin modelo, sin cuenta, sin red.</p>
   </div>
-  <p class="fine">Primera versión: el motor se ejecuta en esta página. Sin modelo, sin cuenta, sin red.</p>
 </section>
 
-<section id="demo" class="demo">
-  <div class="demo__head">
-    <h2>Describe un programa</h2>
-    <p>Escribe una frase. VibeCode escribe el programa, te muestra el código y lo ejecuta abajo.</p>
+<section id="compile" class="compile" aria-labelledby="compile-title">
+  <div class="compile__stage">
+    <header class="compile__head">
+      <h2 id="compile-title"><span class="num">§2</span> Una frase, compilada</h2>
+      <p class="tag">Ilustración guionizada: un programa fijo, paso a paso.</p>
+    </header>
+    <p class="sentence">
+      <button type="button" data-k="1">Dibuja una pelota</button>
+      <button type="button" data-k="2">que cae,</button>
+      <button type="button" data-k="3">rebota en el suelo</button>
+      <button type="button" data-k="4">y deja una estela.</button>
+    </p>
+    <div class="galley" aria-label="El código en que se convirtió la frase">
+      <div class="ln" data-k="1"><span class="ln__say">dibuja una pelota</span><code class="ln__code">const ball = { x: 60, y: 40, r: 14, vy: 0 };</code></div>
+      <div class="ln" data-k="2"><span class="ln__say">que cae</span><code class="ln__code">ball.vy += 1400 * dt;
+ball.y  += ball.vy * dt;</code></div>
+      <div class="ln" data-k="3"><span class="ln__say">rebota en el suelo</span><code class="ln__code">if (ball.y &gt; floor) {
+  ball.y = floor; ball.vy *= -0.82;
+}</code></div>
+      <div class="ln" data-k="4"><span class="ln__say">y deja una estela</span><code class="ln__code">trail.push({ ...ball });
+if (trail.length &gt; 24) trail.shift();</code></div>
+    </div>
+    <figure class="runner">
+      <canvas id="runner" width="640" height="240" data-empty="// todavía no hay nada escrito" role="img" aria-label="El programa hasta donde está escrito: una pelota que cae, rebota y deja una estela"></canvas>
+      <figcaption><span data-step-label>Paso 0 de 4</span> — el lienzo ejecuta las líneas escritas hasta ahora.</figcaption>
+    </figure>
+    <p class="sr-only" aria-live="polite" data-step-live></p>
   </div>
-  <div class="demo__grid">
-    <div class="pane">
-      <label for="describe">Tu descripción</label>
-      <textarea id="describe" rows="4" spellcheck="true" placeholder="una pelota que rebota"></textarea>
-      <div class="chips" role="group" aria-label="Ejemplos">
+</section>
+
+<section id="read" class="plate plate--read" aria-labelledby="read-title">
+  <figure class="plate__media">
+    <picture>
+      <source srcset="../media/proof.avif" type="image/avif">
+      <img src="../media/proof.jpg" alt="" width="1600" height="890" loading="lazy">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/proof.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/proof.mp4" type="video/mp4">
+    </video>
+    <figcaption>fig. 2 — una prueba de imprenta, una línea marcada. Generado (fal), no es una fotografía.</figcaption>
+  </figure>
+  <div class="plate__label">
+    <h2 id="read-title">Lee cada línea.</h2>
+    <p><code>// el código está junto a lo que hace. nada se esconde en un servicio.</code></p>
+  </div>
+</section>
+
+<section id="demo" class="desk" aria-labelledby="demo-title">
+  <header class="desk__head">
+    <h2 id="demo-title"><span class="num">§4</span> Escribe una frase.</h2>
+    <p>VibeCode escribe el programa, te muestra el código y lo ejecuta.</p>
+  </header>
+  <div class="desk__grid">
+    <div class="manuscript">
+      <label for="describe">Tu frase</label>
+      <textarea id="describe" rows="3" spellcheck="true" placeholder="una pelota que rebota"></textarea>
+      <p class="examples" role="group" aria-label="Ejemplos"><span>Prueba</span>
         <button type="button" data-example="una pelota que rebota">una pelota que rebota</button>
         <button type="button" data-example="un reloj">un reloj</button>
         <button type="button" data-example="un gráfico de barras de 12, 19, 15, 27, 22, 34">un gráfico</button>
         <button type="button" data-example="un campo de estrellas">estrellas</button>
         <button type="button" data-example="una onda">una onda</button>
         <button type="button" data-example="fuegos artificiales">fuegos artificiales</button>
-      </div>
-      <div class="row">
-        <button id="generate" class="btn btn--go" type="button">Generar código</button>
-        <span class="kbd"><kbd>Ctrl</kbd><kbd>↵</kbd></span>
-      </div>
-      <p class="note">Esta primera versión elige una receta según las palabras que escribes. El motor es pequeño, local y legible: <code>app/recipes.mjs</code>. El producto real escribirá programas nuevos, no recetas.</p>
+      </p>
+      <p class="actions"><button id="generate" class="swipe" type="button">Escribe el código</button> <span class="kbd"><kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>Enter</kbd></span></p>
+      <p class="note"><b>Recetas, no un modelo.</b> Esta primera versión elige una de seis recetas según las palabras que escribes, o dibuja tus palabras. El motor es pequeño, local y legible: <code>app/recipes.mjs</code>. El producto escribirá programas nuevos.</p>
     </div>
-    <div class="pane pane--code">
+    <div class="proofsheet">
       <div class="codebar">
         <span>index.html</span>
-        <div class="codebar__actions">
-          <button id="copy" type="button">Copiar</button>
-          <button id="run" type="button">Ejecutar</button>
-          <button id="reset" type="button">Reiniciar</button>
-        </div>
+        <span class="codebar__actions">
+          <button id="copy" type="button">copiar</button>
+          <button id="run" type="button">ejecutar</button>
+          <button id="reset" type="button">reiniciar</button>
+        </span>
       </div>
       <textarea id="code" spellcheck="false" aria-label="El código del programa"></textarea>
       <iframe id="preview" title="El resultado del programa" sandbox="allow-scripts"></iframe>
@@ -72,87 +162,86 @@
   </div>
 </section>
 
-<section class="features">
-  <h2>Qué hace</h2>
-  <div class="cards">
-    <article class="card">
-      <h3>Entra una frase</h3>
-      <p>Una descripción, un número, una idea pequeña. VibeCode la convierte en un programa que funciona.</p>
-    </article>
-    <article class="card">
-      <h3>Cada línea legible</h3>
-      <p>El código está junto al resultado. Léelo, cámbialo, ejecútalo otra vez. Nada se esconde en un servicio.</p>
-    </article>
-    <article class="card">
-      <h3>Seguro de ejecutar</h3>
-      <p>El programa corre en un marco aislado y sin red. No puede leer esta página ni enviar tu código a ningún lado.</p>
-    </article>
-    <article class="card">
-      <h3>Es tuyo</h3>
-      <p>Copia el código y guárdalo. Es un archivo HTML normal con su propio script, y funciona en cualquier lugar.</p>
-    </article>
+<section id="how" class="proofs" aria-labelledby="how-title">
+  <h2 id="how-title"><span class="num">§5</span> Tres pruebas, un ciclo.</h2>
+  <ol>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">“ ”</span><h3><span class="s">Describe.</span><span class="m" aria-hidden="true">describe()</span></h3><p>Con tus palabras: en inglés, español o chino.</p></li>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">{ }</span><h3><span class="s">Lee.</span><span class="m" aria-hidden="true">read()</span></h3><p>El programa aparece como código junto a su resultado, corto y comentado.</p></li>
+    <li class="proof"><span class="proof__glyph" aria-hidden="true">&gt;_</span><h3><span class="s">Ejecuta y cambia.</span><span class="m" aria-hidden="true">run()</span></h3><p>Cambia una línea, ejecútalo otra vez, quédate con lo que funciona. Cópialo: es un solo archivo HTML.</p></li>
+  </ol>
+</section>
+
+<section id="sandbox" class="plate plate--ink" aria-labelledby="sandbox-title">
+  <figure class="plate__media">
+    <picture>
+      <source srcset="../media/ink.avif" type="image/avif">
+      <img src="../media/ink.jpg" alt="" width="1600" height="890" loading="lazy">
+    </picture>
+    <video data-loop muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source src="../media/ink.webm" type="video/webm; codecs=av01.0.08M.08">
+      <source src="../media/ink.mp4" type="video/mp4">
+    </video>
+    <figcaption>fig. 3 — tinta en papel de algodón. Generado (fal), no es una fotografía.</figcaption>
+  </figure>
+  <div class="plate__label">
+    <h2 id="sandbox-title">Nada sale de la página.</h2>
+    <p>El programa corre en <code>&lt;iframe sandbox="allow-scripts"&gt;</code>: sin red, sin acceso a esta página. La página no envía nada después de cargar.</p>
   </div>
 </section>
 
-<section id="how" class="how">
-  <h2>Cómo funciona</h2>
-  <ol class="steps">
-    <li><strong>Describe.</strong> Di lo que quieres con tus palabras, en inglés, español o chino.</li>
-    <li><strong>Lee.</strong> El programa aparece como código a la derecha, comentado y corto.</li>
-    <li><strong>Ejecuta y cambia.</strong> Ejecútalo en el marco. Cambia una línea y ejecútalo otra vez. Quédate con lo que funciona.</li>
-  </ol>
-  <p class="fine">La demo escribe seis tipos de programa y uno más con tus propias palabras. Lee las palabras de tu descripción para elegir. Este es el ciclo que lanza el producto: una descripción se convierte en código que puedes confiar, porque puedes leerlo entero.</p>
-</section>
-
-<section id="pricing" class="pricing">
-  <h2>Precios</h2>
-  <div class="cards cards--three">
-    <article class="card card--price">
+<section id="pricing" class="specimen" aria-labelledby="pricing-title">
+  <header>
+    <h2 id="pricing-title"><span class="num">§7</span> Tres pesos.</h2>
+    <p>Una herramienta, más pesada para más personas.</p>
+  </header>
+  <div class="weights">
+    <article class="weight weight--400">
+      <p class="weight__axis"><code>wght 400</code></p>
       <h3>Gratis</h3>
-      <p class="price">$0</p>
+      <p class="weight__price">$0</p>
       <ul><li>La demo de esta página</li><li>Todos los tipos de programa</li><li>Código que puedes copiar y guardar</li></ul>
-      <a class="btn" href="#demo">Abrir la demo</a>
+      <a class="under" href="#demo">Abrir la demo</a>
     </article>
-    <article class="card card--price">
+    <article class="weight weight--600">
+      <p class="weight__axis"><code>wght 600</code></p>
       <h3>Equipo</h3>
-      <p class="price">Precio en el lanzamiento</p>
-      <ul><li>Programas escritos desde tu propia descripción</li><li>Espacios de trabajo compartidos</li><li>Tu repositorio, tu código</li></ul>
-      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Equipo">Pedir acceso anticipado</a>
+      <p class="weight__price">Precio al lanzar</p>
+      <ul><li>Programas escritos a partir de tu propia descripción</li><li>Espacios de trabajo compartidos</li><li>Tu repositorio, tu código</li></ul>
+      <a class="under" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Team">Pide acceso anticipado</a>
     </article>
-    <article class="card card--price">
+    <article class="weight weight--800">
+      <p class="weight__axis"><code>wght 800</code></p>
       <h3>Empresa</h3>
-      <p class="price">Precio en el lanzamiento</p>
+      <p class="weight__price">Precio al lanzar</p>
       <ul><li>Tu propio modelo y tu nube</li><li>Revisión antes de publicar código</li><li>Un acuerdo de soporte</li></ul>
-      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Empresa">Habla con nosotros</a>
+      <a class="under" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Enterprise">Habla con nosotros</a>
     </article>
   </div>
   <p class="fine">Todavía no hay precio. El dueño fija el precio y lanza cada plan. Nada en esta página cobra un pago.</p>
 </section>
 
-<section id="faq" class="faq">
-  <h2>Preguntas</h2>
-  <details><summary>¿Esta página llama a un modelo?</summary><p>No. La primera versión ejecuta un motor pequeño en tu navegador. Elige una de seis recetas según las palabras que escribes. La siguiente versión del producto llamará a un modelo a través de nuestra API, nunca con una clave en el navegador.</p></details>
-  <details><summary>¿Mi código sale de esta página?</summary><p>No. La página no envía nada después de cargar. El programa corre en un marco aislado y sin red.</p></details>
-  <details><summary>¿Puedo quedarme con lo que escribe?</summary><p>Sí. Copia el código y guárdalo como un archivo HTML. Funciona en cualquier navegador, sin conexión.</p></details>
-  <details><summary>¿Quién hace VibeCode?</summary><p>VibeCode es una empresa de CommandAGI. Escribe a <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>.</p></details>
+<section id="faq" class="notes" aria-labelledby="faq-title">
+  <h2 id="faq-title"><span class="num">§8</span> Notas</h2>
+  <details><summary><sup>1</sup> ¿Esta página llama a un modelo?</summary><p>No. La primera versión ejecuta un motor pequeño en tu navegador. Elige una de seis recetas según las palabras que escribes. La siguiente versión del producto llamará a un modelo a través de nuestra API, nunca con una clave en el navegador.</p></details>
+  <details><summary><sup>2</sup> ¿Mi código sale de esta página?</summary><p>No. La página no envía nada después de cargar. El programa corre en un marco aislado y sin red.</p></details>
+  <details><summary><sup>3</sup> ¿Puedo quedarme con lo que escribe?</summary><p>Sí. Copia el código y guárdalo como un archivo HTML. Funciona en cualquier navegador, sin conexión.</p></details>
+  <details><summary><sup>4</sup> ¿Quién hace VibeCode?</summary><p>VibeCode es una empresa de CommandAGI. Escribe a <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>.</p></details>
 </section>
 </main>
 
-<footer class="footer">
-  <div class="footer__top">
-    <div>
-      <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
-      <p class="pitch">Código a partir de una descripción. Una empresa de CommandAGI.</p>
-      <p><a class="go" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
-    </div>
-    <nav class="footer__links" aria-label="Este sitio">
-      <a href="#demo">Demo</a>
-      <a href="#how">Cómo funciona</a>
-      <a href="#pricing">Precios</a>
-      <a href="#faq">Preguntas</a>
-    </nav>
+<footer class="colophon">
+  <a class="wordmark wordmark--big" href="../" aria-label="VibeCode, inicio"><svg viewBox="-2 -46 232 62" aria-hidden="true"><use href="../wordmark.svg#w"/></svg></a>
+  <div class="colophon__text">
+    <p><i>Colofón.</i> Compuesto en EB Garamond y Commit Mono. Las imágenes en movimiento están generadas con fal: estudios de tipos, papel y tinta, no fotografías del trabajo de nadie.</p>
+    <p>Código a partir de una descripción. Una empresa de CommandAGI. <a class="under" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
   </div>
-  <div class="footer__base">
+  <nav class="colophon__links" aria-label="Este sitio">
+    <a href="#demo">Demo</a>
+    <a href="#how">Cómo funciona</a>
+    <a href="#pricing">Precios</a>
+    <a href="#faq">Notas</a>
+  </nav>
+  <div class="colophon__base">
     <span>© 2026 VibeCode, una empresa de CommandAGI.</span>
     <div class="lang">
       <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
@@ -171,6 +260,7 @@
   </div>
 </footer>
 <script src="../app/lang.js"></script>
+<script type="module" src="../app/page.js"></script>
 <script type="module" src="../app/demo.js"></script>
 </body>
 </html>

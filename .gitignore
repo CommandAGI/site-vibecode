@@ -1,0 +1,4 @@
+# fal's full-size sources: kept on the build machine, never shipped (redesign/NOTES.md)
+redesign/media/*.png
+redesign/media/*.mp4
+redesign/shots/
