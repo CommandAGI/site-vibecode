@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VibeCode — code by description</title>
+<meta name="description" content="VibeCode writes a working program from a sentence. You read every line, change it and run it in the browser. A company of CommandAGI.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="./"><img src="mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
+  <nav aria-label="Sections">
+    <a href="#demo">Demo</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">Questions</a>
+  </nav>
+  <a class="btn btn--go" href="#demo">Try it</a>
+</header>
+
+<main>
+<section class="hero">
+  <p class="eyebrow">Code by description</p>
+  <h1>Describe it. Read the code. Run it.</h1>
+  <p class="lede">VibeCode writes a working program from a sentence. You see every line, change it, and run it in the browser. Nothing to install.</p>
+  <div class="cta">
+    <a class="btn btn--go btn--big" href="#demo">Try the demo</a>
+    <a class="btn btn--big" href="#how">How it works</a>
+  </div>
+  <p class="fine">First version: the engine runs on this page. No model, no account, no network.</p>
+</section>
+
+<section id="demo" class="demo">
+  <div class="demo__head">
+    <h2>Describe a program</h2>
+    <p>Write one sentence. VibeCode writes the program, shows you the code, and runs it below.</p>
+  </div>
+  <div class="demo__grid">
+    <div class="pane">
+      <label for="describe">Your description</label>
+      <textarea id="describe" rows="4" spellcheck="true" placeholder="a bouncing ball"></textarea>
+      <div class="chips" role="group" aria-label="Examples">
+        <button type="button" data-example="a bouncing ball">a bouncing ball</button>
+        <button type="button" data-example="a clock">a clock</button>
+        <button type="button" data-example="a bar chart of 12, 19, 15, 27, 22, 34">a bar chart</button>
+        <button type="button" data-example="a starfield">a starfield</button>
+        <button type="button" data-example="a sine wave">a wave</button>
+        <button type="button" data-example="fireworks">fireworks</button>
+      </div>
+      <div class="row">
+        <button id="generate" class="btn btn--go" type="button">Generate code</button>
+        <span class="kbd"><kbd>Ctrl</kbd><kbd>↵</kbd></span>
+      </div>
+      <p class="note">This first version picks a recipe from the words you write. The engine is small, local and readable: <code>app/recipes.mjs</code>. The real product will write new programs, not recipes.</p>
+    </div>
+    <div class="pane pane--code">
+      <div class="codebar">
+        <span>index.html</span>
+        <div class="codebar__actions">
+          <button id="copy" type="button">Copy</button>
+          <button id="run" type="button">Run</button>
+          <button id="reset" type="button">Reset</button>
+        </div>
+      </div>
+      <textarea id="code" spellcheck="false" aria-label="The program's code"></textarea>
+      <iframe id="preview" title="The program's output" sandbox="allow-scripts"></iframe>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2>What it does</h2>
+  <div class="cards">
+    <article class="card">
+      <h3>One sentence in</h3>
+      <p>A description, a number, a small idea. VibeCode turns it into a program that runs.</p>
+    </article>
+    <article class="card">
+      <h3>Every line readable</h3>
+      <p>The code sits beside the output. Read it, change it, run it again. Nothing hides in a service.</p>
+    </article>
+    <article class="card">
+      <h3>Safe to run</h3>
+      <p>The program runs in a sandboxed frame with no network. It cannot read this page or send your code anywhere.</p>
+    </article>
+    <article class="card">
+      <h3>Yours to keep</h3>
+      <p>Copy the code out and keep it. It is a plain HTML file with its own script, and it runs anywhere.</p>
+    </article>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><strong>Describe.</strong> Say what you want in your own words, in English, Spanish or Chinese.</li>
+    <li><strong>Read.</strong> The program appears as code on the right, commented and short.</li>
+    <li><strong>Run and change.</strong> Run it in the frame. Edit a line, run it again. Keep what works.</li>
+  </ol>
+  <p class="fine">The demo writes six kinds of program plus one from your own words. It reads the words of your description to choose. This is the loop the product ships: a description becomes code you can trust, because you can read all of it.</p>
+</section>
+
+<section id="pricing" class="pricing">
+  <h2>Pricing</h2>
+  <div class="cards cards--three">
+    <article class="card card--price">
+      <h3>Free</h3>
+      <p class="price">$0</p>
+      <ul><li>The demo on this page</li><li>Every kind of program</li><li>Code you can copy and keep</li></ul>
+      <a class="btn" href="#demo">Open the demo</a>
+    </article>
+    <article class="card card--price">
+      <h3>Team</h3>
+      <p class="price">Priced at launch</p>
+      <ul><li>Programs written from your own description</li><li>Shared workspaces</li><li>Your repository, your code</li></ul>
+      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Team">Ask for early access</a>
+    </article>
+    <article class="card card--price">
+      <h3>Enterprise</h3>
+      <p class="price">Priced at launch</p>
+      <ul><li>Your own model and cloud</li><li>Review before any code ships</li><li>A support agreement</li></ul>
+      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Enterprise">Talk to us</a>
+    </article>
+  </div>
+  <p class="fine">No price is set yet. The owner prices and launches each plan. Nothing on this page takes a payment.</p>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Questions</h2>
+  <details><summary>Does this page call a model?</summary><p>No. The first version runs a small engine in your browser. It picks one of six recipes by the words you write. The product's next version calls a model through our API, never from a browser key.</p></details>
+  <details><summary>Does my code leave this page?</summary><p>No. The page sends nothing after it loads. The program runs in a sandboxed frame with no network.</p></details>
+  <details><summary>Can I keep what it writes?</summary><p>Yes. Copy the code and save it as an HTML file. It runs on any browser, offline.</p></details>
+  <details><summary>Who makes VibeCode?</summary><p>VibeCode is a company of CommandAGI. Write to <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>.</p></details>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div>
+      <a class="brand" href="./"><img src="mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
+      <p class="pitch">Code by description. A company of CommandAGI.</p>
+      <p><a class="go" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
+    </div>
+    <nav class="footer__links" aria-label="This site">
+      <a href="#demo">Demo</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+    </nav>
+  </div>
+  <div class="footer__base">
+    <span>© 2026 VibeCode, a company of CommandAGI.</span>
+    <div class="lang">
+      <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+      <noscript><nav class="lang-links" aria-label="Languages"><a href="./" hreflang="en">English</a><a href="es/" hreflang="es">Español</a><a href="zh-Hans/" hreflang="zh-Hans">简体中文</a></nav></noscript>
+      <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-title">
+        <div class="lang-dialog__box">
+          <div class="lang-dialog__head"><h2 id="lang-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
+          <ul class="lang-list">
+            <li><a href="./" hreflang="en" aria-current="true"><span lang="en">English</span><span class="lang-list__check" aria-hidden="true">✓</span></a></li>
+            <li><a href="es/" hreflang="es"><span lang="es">Español</span></a></li>
+            <li><a href="zh-Hans/" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
+          </ul>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</footer>
+<script src="app/lang.js"></script>
+<script type="module" src="app/demo.js"></script>
+</body>
+</html>

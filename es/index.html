@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VibeCode — código a partir de una descripción</title>
+<meta name="description" content="VibeCode escribe un programa que funciona a partir de una frase. Lees cada línea, la cambias y la ejecutas en el navegador. Una empresa de CommandAGI.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
+  <nav aria-label="Secciones">
+    <a href="#demo">Demo</a>
+    <a href="#how">Cómo funciona</a>
+    <a href="#pricing">Precios</a>
+    <a href="#faq">Preguntas</a>
+  </nav>
+  <a class="btn btn--go" href="#demo">Probar</a>
+</header>
+
+<main>
+<section class="hero">
+  <p class="eyebrow">Código a partir de una descripción</p>
+  <h1>Descríbelo. Lee el código. Ejecútalo.</h1>
+  <p class="lede">VibeCode escribe un programa que funciona a partir de una frase. Ves cada línea, la cambias y la ejecutas en el navegador. No hay nada que instalar.</p>
+  <div class="cta">
+    <a class="btn btn--go btn--big" href="#demo">Probar la demo</a>
+    <a class="btn btn--big" href="#how">Cómo funciona</a>
+  </div>
+  <p class="fine">Primera versión: el motor se ejecuta en esta página. Sin modelo, sin cuenta, sin red.</p>
+</section>
+
+<section id="demo" class="demo">
+  <div class="demo__head">
+    <h2>Describe un programa</h2>
+    <p>Escribe una frase. VibeCode escribe el programa, te muestra el código y lo ejecuta abajo.</p>
+  </div>
+  <div class="demo__grid">
+    <div class="pane">
+      <label for="describe">Tu descripción</label>
+      <textarea id="describe" rows="4" spellcheck="true" placeholder="una pelota que rebota"></textarea>
+      <div class="chips" role="group" aria-label="Ejemplos">
+        <button type="button" data-example="una pelota que rebota">una pelota que rebota</button>
+        <button type="button" data-example="un reloj">un reloj</button>
+        <button type="button" data-example="un gráfico de barras de 12, 19, 15, 27, 22, 34">un gráfico</button>
+        <button type="button" data-example="un campo de estrellas">estrellas</button>
+        <button type="button" data-example="una onda">una onda</button>
+        <button type="button" data-example="fuegos artificiales">fuegos artificiales</button>
+      </div>
+      <div class="row">
+        <button id="generate" class="btn btn--go" type="button">Generar código</button>
+        <span class="kbd"><kbd>Ctrl</kbd><kbd>↵</kbd></span>
+      </div>
+      <p class="note">Esta primera versión elige una receta según las palabras que escribes. El motor es pequeño, local y legible: <code>app/recipes.mjs</code>. El producto real escribirá programas nuevos, no recetas.</p>
+    </div>
+    <div class="pane pane--code">
+      <div class="codebar">
+        <span>index.html</span>
+        <div class="codebar__actions">
+          <button id="copy" type="button">Copiar</button>
+          <button id="run" type="button">Ejecutar</button>
+          <button id="reset" type="button">Reiniciar</button>
+        </div>
+      </div>
+      <textarea id="code" spellcheck="false" aria-label="El código del programa"></textarea>
+      <iframe id="preview" title="El resultado del programa" sandbox="allow-scripts"></iframe>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Qué hace</h2>
+  <div class="cards">
+    <article class="card">
+      <h3>Entra una frase</h3>
+      <p>Una descripción, un número, una idea pequeña. VibeCode la convierte en un programa que funciona.</p>
+    </article>
+    <article class="card">
+      <h3>Cada línea legible</h3>
+      <p>El código está junto al resultado. Léelo, cámbialo, ejecútalo otra vez. Nada se esconde en un servicio.</p>
+    </article>
+    <article class="card">
+      <h3>Seguro de ejecutar</h3>
+      <p>El programa corre en un marco aislado y sin red. No puede leer esta página ni enviar tu código a ningún lado.</p>
+    </article>
+    <article class="card">
+      <h3>Es tuyo</h3>
+      <p>Copia el código y guárdalo. Es un archivo HTML normal con su propio script, y funciona en cualquier lugar.</p>
+    </article>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <h2>Cómo funciona</h2>
+  <ol class="steps">
+    <li><strong>Describe.</strong> Di lo que quieres con tus palabras, en inglés, español o chino.</li>
+    <li><strong>Lee.</strong> El programa aparece como código a la derecha, comentado y corto.</li>
+    <li><strong>Ejecuta y cambia.</strong> Ejecútalo en el marco. Cambia una línea y ejecútalo otra vez. Quédate con lo que funciona.</li>
+  </ol>
+  <p class="fine">La demo escribe seis tipos de programa y uno más con tus propias palabras. Lee las palabras de tu descripción para elegir. Este es el ciclo que lanza el producto: una descripción se convierte en código que puedes confiar, porque puedes leerlo entero.</p>
+</section>
+
+<section id="pricing" class="pricing">
+  <h2>Precios</h2>
+  <div class="cards cards--three">
+    <article class="card card--price">
+      <h3>Gratis</h3>
+      <p class="price">$0</p>
+      <ul><li>La demo de esta página</li><li>Todos los tipos de programa</li><li>Código que puedes copiar y guardar</li></ul>
+      <a class="btn" href="#demo">Abrir la demo</a>
+    </article>
+    <article class="card card--price">
+      <h3>Equipo</h3>
+      <p class="price">Precio en el lanzamiento</p>
+      <ul><li>Programas escritos desde tu propia descripción</li><li>Espacios de trabajo compartidos</li><li>Tu repositorio, tu código</li></ul>
+      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Equipo">Pedir acceso anticipado</a>
+    </article>
+    <article class="card card--price">
+      <h3>Empresa</h3>
+      <p class="price">Precio en el lanzamiento</p>
+      <ul><li>Tu propio modelo y tu nube</li><li>Revisión antes de publicar código</li><li>Un acuerdo de soporte</li></ul>
+      <a class="btn" href="mailto:hello@vibecode.ooo?subject=VibeCode%20Empresa">Habla con nosotros</a>
+    </article>
+  </div>
+  <p class="fine">Todavía no hay precio. El dueño fija el precio y lanza cada plan. Nada en esta página cobra un pago.</p>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Preguntas</h2>
+  <details><summary>¿Esta página llama a un modelo?</summary><p>No. La primera versión ejecuta un motor pequeño en tu navegador. Elige una de seis recetas según las palabras que escribes. La siguiente versión del producto llamará a un modelo a través de nuestra API, nunca con una clave en el navegador.</p></details>
+  <details><summary>¿Mi código sale de esta página?</summary><p>No. La página no envía nada después de cargar. El programa corre en un marco aislado y sin red.</p></details>
+  <details><summary>¿Puedo quedarme con lo que escribe?</summary><p>Sí. Copia el código y guárdalo como un archivo HTML. Funciona en cualquier navegador, sin conexión.</p></details>
+  <details><summary>¿Quién hace VibeCode?</summary><p>VibeCode es una empresa de CommandAGI. Escribe a <a href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a>.</p></details>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div>
+      <a class="brand" href="../"><img src="../mark.svg" alt="" width="26" height="26"><span>VibeCode</span></a>
+      <p class="pitch">Código a partir de una descripción. Una empresa de CommandAGI.</p>
+      <p><a class="go" href="mailto:hello@vibecode.ooo">hello@vibecode.ooo</a></p>
+    </div>
+    <nav class="footer__links" aria-label="Este sitio">
+      <a href="#demo">Demo</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#pricing">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+  </div>
+  <div class="footer__base">
+    <span>© 2026 VibeCode, una empresa de CommandAGI.</span>
+    <div class="lang">
+      <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+      <noscript><nav class="lang-links" aria-label="Idiomas"><a href="../" hreflang="en">English</a><a href="./" hreflang="es">Español</a><a href="../zh-Hans/" hreflang="zh-Hans">简体中文</a></nav></noscript>
+      <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-title">
+        <div class="lang-dialog__box">
+          <div class="lang-dialog__head"><h2 id="lang-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
+          <ul class="lang-list">
+            <li><a href="../" hreflang="en"><span lang="en">English</span></a></li>
+            <li><a href="./" hreflang="es" aria-current="true"><span lang="es">Español</span><span class="lang-list__check" aria-hidden="true">✓</span></a></li>
+            <li><a href="../zh-Hans/" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
+          </ul>
+        </div>
+      </dialog>
+    </div>
+  </div>
+</footer>
+<script src="../app/lang.js"></script>
+<script type="module" src="../app/demo.js"></script>
+</body>
+</html>
